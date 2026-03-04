@@ -24,18 +24,16 @@ exec_always --no-startup-id autotiling-rs
 exec --no-startup-id lxsession
 exec --no-startup-id nm-applet
 
+# SWAYFX OPTIONS
+blur enable
+
 ### Idle configuration
-#
-# Example configuration:
-#
+
 exec swayidle -w \
          timeout 300 'gtklock -S' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'gtklock -S'
 
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
 input * {
@@ -56,16 +54,12 @@ input * {
     # Wofi
     bindsym --to-code $mod+d exec $menu --show drun
     bindsym --to-code $mod+shift+p exec ~/.config/sway/powermenu.sh
-    bindsym --to-code $mod+n exec ~/.config/sway/wofi-wifi-menu.sh
 
     bindsym --to-code $mod+e exec thunar
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
+
     floating_modifier $mod normal
+
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
