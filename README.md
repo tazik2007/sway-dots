@@ -31,6 +31,7 @@ cliphist
 wl-paste
 grim
 slurp
+flameshot
 autotiling-rs
 rofi
 thunar
