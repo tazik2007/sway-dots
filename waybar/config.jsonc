@@ -17,11 +17,10 @@
     ],
     "modules-right": [
         "mpd",
-        "pulseaudio",
         "network",
         "cpu",
         "memory",
-        "temperature",
+        "pulseaudio",
         "backlight",
         "keyboard-state",
         "sway/language",
