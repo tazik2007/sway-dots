@@ -9,9 +9,9 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term xfce4-terminal
+set $term kitty
 # Your preferred application launcher
-set $menu wofi
+set $menu rofi
 
 ### Output configuration
 #
@@ -23,6 +23,8 @@ exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec_always --no-startup-id autotiling-rs
 exec --no-startup-id lxsession
 exec --no-startup-id nm-applet
+exec --no-startup-id wl-paste --type text --watch cliphist store # Stores only text data
+exec --no-startup-id wl-paste --type image --watch cliphist store # Stores only image data
 
 # SWAYFX OPTIONS
 blur enable
@@ -49,11 +51,13 @@ input * {
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym --to-code $mod+Shift+q kill
 
-    # Wofi
-    bindsym --to-code $mod+d exec $menu --show drun
-    bindsym --to-code $mod+shift+p exec ~/.config/sway/powermenu.sh
+    # Rofi
+    bindsym --to-code $mod+d exec $menu -show drun
+    bindsym --to-code $mod+shift+p exec rofi -show power-menu -modi power-menu:~/.config/sway/rofi-power-menu
+    bindsym --to-code $mod+c exec cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy
+    
 
     bindsym --to-code $mod+e exec thunar
 
@@ -194,8 +198,7 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym $mod+s exec grim -g "$(slurp)" -t png - | wl-copy -t image/png
-    bindsym Print exec grim
+    bindsym $mod+p exec flameshot gui 
     
 bar {
     swaybar_command waybar
