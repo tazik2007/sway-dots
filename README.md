@@ -6,14 +6,14 @@
 | ----------------- | --------------- |
 | **OS**            | Arch Linux      |
 | **Window Manager**| Sway            |
-| **Colour scheme** | Nord            |
+| **Colour scheme** | Breeze          |
 | **Bar**           | Waybar          |
-| **Terminal**      | Kitty           |
+| **Terminal**      | Xfce4-terminal  |
 | **Shell**         | Fish            |
 | **Menu**          | Rofi            |
-| **File browser**  | Thunar          |
+| **File browser**  | Dolphin         |
 | **Lockscreen**    | gtklock         |
-| **GTK Theme**     |[Colloid-Dark-Nord](https://github.com/vinceliuice/Colloid-gtk-theme) |
+| **GTK Theme**     | breeze-gtk      |
 ---
 ### (AUR) Packages:
 ```
@@ -34,12 +34,13 @@ slurp
 flameshot
 autotiling-rs
 rofi
-thunar
+dolphin
+ark
+archlinux-xdg-menu
 ttf-nerd-fonts-symbols
 pavucontrol-qt
 nwg-look
-colloid-nord-gtk-theme-git
-kvantum
-qt6ct
+breeze-gtk
+qt6ct-kde
 
 ```
