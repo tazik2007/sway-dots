@@ -8,10 +8,10 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term kitty
-# Your preferred application launcher
-set $menu rofi
+
+set $term xfce4-terminal
+set $menu rofi 
+set $filemanager dolphin
 
 ### Output configuration
 #
@@ -21,6 +21,7 @@ output * bg ~/.config/sway/wlp.* fill
 # AUTOSTARTR
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec_always --no-startup-id autotiling-rs
+exec --no-startup-id XDG_MENU_PREFIX=arch- kbuildsycoca6 --noincremental
 exec --no-startup-id lxsession
 exec --no-startup-id nm-applet
 exec --no-startup-id wl-paste --type text --watch cliphist store # Stores only text data
@@ -49,6 +50,7 @@ input * {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym --to-code $mod+w exec chromium
 
     # Kill focused window
     bindsym --to-code $mod+Shift+q kill
@@ -59,17 +61,17 @@ input * {
     bindsym --to-code $mod+c exec cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy
     
 
-    bindsym --to-code $mod+e exec thunar
+    bindsym --to-code $mod+e exec $filemanager
 
 
     floating_modifier $mod normal
 
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym --to-code $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     # Borders & gaps
     default_border pixel 
@@ -140,7 +142,7 @@ input * {
 #    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym --to-code $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -185,7 +187,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym --to-code $mod+r mode "resize"
 #
 # Utilities:
 #
@@ -197,8 +199,8 @@ bindsym $mod+r mode "resize"
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    # Special key to take a screenshot
-    bindsym $mod+p exec flameshot gui 
+    # Special key to take a screenshot with grim
+    bindsym --to-code $mod+p exec flameshot gui 
     
 bar {
     swaybar_command waybar
